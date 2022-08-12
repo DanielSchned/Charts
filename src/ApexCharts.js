@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from 'react';
-import './charts.css';
+import './charts.scss';
 import Chart from "react-apexcharts";
 import ApexCharts from "apexcharts";
 
