@@ -1,0 +1,35 @@
+#box{
+    width  : 400px;
+    height : 250px;
+  
+    border : solid;
+    border-radius : 15px;
+
+    background-color: white;
+    padding: 10px;
+    margin-left: -30%;
+}
+
+#box-inv{
+  width  : 220px;
+  height : 250px;
+
+  border : solid;
+  border-radius : 15px;
+  
+  background-color: white;
+  padding: 10px;
+
+  margin-top: -279px;
+  margin-left: 107%;
+}
+
+#winner{
+  visibility: hidden;
+  color : black;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+}
+
+#titre{
+  text-decoration: underline;
+}
