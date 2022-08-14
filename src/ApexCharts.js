@@ -23,6 +23,10 @@ export default class ApexChart extends Component {
             easing: "linear",
             
           },
+          dynamicAnimation: {
+            enabled: true,
+            speed: 100
+          }, 
           toolbar: {
             show: false
           },
@@ -34,7 +38,7 @@ export default class ApexChart extends Component {
           enabled: false
         },
         stroke: {
-          curve: "straight",
+          curve: "smooth",
           width: 2,
         },
         tooltip: {
@@ -188,7 +192,6 @@ export default class ApexChart extends Component {
 
     const { options, series, player } = this.state;
     if (this.state.player.length === 2){
-      debugger
       var img;
       var x = document.getElementById("id1");
       document.getElementById("winner").style.visibility = "visible";
@@ -202,8 +205,8 @@ export default class ApexChart extends Component {
 
 
       <div id="box">
-        <Chart options={options} series={series} type="line" width={400} height={250} />
-        <div id="box-inv"><img id="id1" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="220px" height="220px"></img><span id = "winner">GAGNANT !</span></div>
+        <Chart id = "chartid" options={options} series={series} type="line" />
+        <div id="box-inv"><img id="id1" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"></img><span id = "winner">GAGNANT !</span></div>
       </div>
 
 
