@@ -112,7 +112,7 @@ export default class ApexChart extends Component {
       const index = this.state.player.findIndex(player => player === "data2")
       if (index !== -1) {
         this.state.player.splice(index, 2)
-        this.setState({ player: this.state.player }, {chart: this.state.animations})
+        this.setState({ player: this.state.player })
       }
     }
 
