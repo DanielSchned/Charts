@@ -16,7 +16,6 @@ export default class ApexChart extends Component {
     this.state = {
       options: {
         colors: ['#8f15bf', '#c066e3', '#430c59'],
-        
         chart: {
           id: "realtime",
           toolbar: {
@@ -26,12 +25,11 @@ export default class ApexChart extends Component {
             enabled: false
           },
           
-          
         },
         
         
         dataLabels: {
-          enabled: true
+          enabled: false
         },
         stroke: {
           curve: "smooth",
@@ -81,9 +79,11 @@ export default class ApexChart extends Component {
       return;
     }
     const time = Math.floor(new Date().getTime() / 1000);
-    var y = data[data.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 30));
-    var y2 = data2[data2.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 30));
-    var y3 = data3[data3.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 30));
+
+    var y = data[data.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 30) : -Math.floor(Math.random() * 10));
+    var y2 = data2[data2.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 10));
+    var y3 = data3[data3.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 10));
+
     if(y <= -50){
       debugger
       y = -50
@@ -112,7 +112,7 @@ export default class ApexChart extends Component {
       const index = this.state.player.findIndex(player => player === "data2")
       if (index !== -1) {
         this.state.player.splice(index, 2)
-        this.setState({ player: this.state.player })
+        this.setState({ player: this.state.player }, {chart: this.state.animations})
       }
     }
 
@@ -139,6 +139,7 @@ export default class ApexChart extends Component {
         data: data3
       }
     ])
+    
 
     ApexCharts.exec('realtime', 'updateOptions', {
       annotations: {
@@ -171,6 +172,17 @@ export default class ApexChart extends Component {
           }
         }
         ],
+      },
+      chart: {
+        animations: {
+          enabled: true,
+          easing: 'linear',
+          speed: 800,
+          dynamicAnimation: {
+              enabled: true,
+              speed: 350
+          }
+      }
       }
     })
     
