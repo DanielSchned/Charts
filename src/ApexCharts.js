@@ -8,22 +8,29 @@ let data = [[Math.floor(new Date().getTime() / 1000), 0]];
 let data2 = [[Math.floor(new Date().getTime() / 1000), 0]];
 let data3 = [[Math.floor(new Date().getTime() / 1000), 0]];
 
-
-
 export default class ApexChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      
       options: {
         colors: ['#8f15bf', '#c066e3', '#430c59'],
         chart: {
           id: "realtime",
+          animations: {
+            enabled: true,
+            easing: "linear",
+            dynamicAnimation: {
+              speed: 1000
+            }
+          },
           toolbar: {
             show: false
           },
           zoom: {
             enabled: false
           },
+          
           
         },
         
@@ -50,6 +57,7 @@ export default class ApexChart extends Component {
           range: 10,
 
         },
+        
 
         yaxis: {
           max: 50,
@@ -78,14 +86,13 @@ export default class ApexChart extends Component {
     if (this.state.player.length === 2) {
       return;
     }
+    
     const time = Math.floor(new Date().getTime() / 1000);
-
     var y = data[data.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 30) : -Math.floor(Math.random() * 10));
     var y2 = data2[data2.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 10));
     var y3 = data3[data3.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 10));
 
     if(y <= -50){
-      debugger
       y = -50
     }
     if(y2 <= -50){
@@ -139,52 +146,43 @@ export default class ApexChart extends Component {
         data: data3
       }
     ])
-    
 
-    ApexCharts.exec('realtime', 'updateOptions', {
-      annotations: {
-        points: [{
-          x: Math.floor(new Date().getTime() / 1000),
-          y: data[data.length - 1][1],
-          marker: {
-            size: 1
-          },
-          image: {
-            path: 'https://cdn-icons-png.flaticon.com/512/219/219983.png'
-          }
-        }, {
-          x: Math.floor(new Date().getTime() / 1000),
-          y: data2[data2.length - 1][1],
-          marker: {
-            size: 1
-          },
-          image: {
-            path: 'https://cdn-icons-png.flaticon.com/512/219/219986.png'
-          }
-        }, {
-          x: Math.floor(new Date().getTime() / 1000),
-          y: data3[data3.length - 1][1],
-          marker: {
-            size: 1
-          },
-          image: {
-            path: 'https://www.pngmart.com/files/21/Admin-Profile-PNG-Clipart.png'
-          }
-        }
-        ],
-      },
-      chart: {
-        animations: {
-          enabled: true,
-          easing: 'linear',
-          speed: 800,
-          dynamicAnimation: {
-              enabled: true,
-              speed: 350
-          }
-      }
-      }
-    })
+  ApexCharts.exec('realtime', 'updateOptions', {
+    
+    annotations: {
+       points: [{
+         x: Math.floor(new Date().getTime() / 1000),
+         y: data[data.length - 1][1],
+         marker: {
+           size: 1
+         },
+         image: {
+           path: 'https://cdn-icons-png.flaticon.com/512/219/219983.png'
+         }
+       }, {
+         x: Math.floor(new Date().getTime() / 1000),
+         y: data2[data2.length - 1][1],
+         marker: {
+           size: 1
+         },
+         image: {
+           path: 'https://cdn-icons-png.flaticon.com/512/219/219986.png',
+         }
+       }, {
+         x: Math.floor(new Date().getTime() / 1000),
+         y: data3[data3.length - 1][1],
+         marker: {
+           size: 1
+         },
+         image: {
+           path: 'https://www.pngmart.com/files/21/Admin-Profile-PNG-Clipart.png'
+         }
+       }
+       ],
+     },
+   
+  })
+   
     
   };
 
@@ -222,7 +220,7 @@ export default class ApexChart extends Component {
 
 
       <div id="box">
-        <Chart id = "chartid" options={options} series={series} />
+        <Chart id = "chartid" options={this.state.options} series={this.state.series} animations = {this.state.animations} />
         <div id="box-inv"><img id="id1" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"></img><span id = "winner">GAGNANT !</span></div>
       </div>
 
