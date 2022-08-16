@@ -16,26 +16,22 @@ export default class ApexChart extends Component {
     this.state = {
       options: {
         colors: ['#8f15bf', '#c066e3', '#430c59'],
+        
         chart: {
           id: "realtime",
-          animations: {
-            enabled: true,
-            easing: "linear",
-            
-          },
-          dynamicAnimation: {
-            enabled: true,
-            speed: 100
-          }, 
           toolbar: {
             show: false
           },
           zoom: {
             enabled: false
-          }
+          },
+          
+          
         },
+        
+        
         dataLabels: {
-          enabled: false
+          enabled: true
         },
         stroke: {
           curve: "smooth",
@@ -85,10 +81,19 @@ export default class ApexChart extends Component {
       return;
     }
     const time = Math.floor(new Date().getTime() / 1000);
-    const y = data[data.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 20) : -Math.floor(Math.random() * 10));
-    const y2 = data2[data2.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 20) : -Math.floor(Math.random() * 10));
-    const y3 = data3[data3.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 20) : -Math.floor(Math.random() * 10));
-
+    var y = data[data.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 30));
+    var y2 = data2[data2.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 30));
+    var y3 = data3[data3.length - 1][1] + (Math.random() > 0.5 ? Math.floor(Math.random() * 10) : -Math.floor(Math.random() * 30));
+    if(y <= -50){
+      debugger
+      y = -50
+    }
+    if(y2 <= -50){
+      y2 = -50
+    }
+    if(y3 <= -50){
+      y3 = -50
+    }
     if (data[data.length - 1][1] < 50) {
       data.push([time, y]);
     } else {
@@ -205,7 +210,7 @@ export default class ApexChart extends Component {
 
 
       <div id="box">
-        <Chart id = "chartid" options={options} series={series} type="line" />
+        <Chart id = "chartid" options={options} series={series} />
         <div id="box-inv"><img id="id1" src="https://cdn-icons-png.flaticon.com/512/149/149071.png"></img><span id = "winner">GAGNANT !</span></div>
       </div>
 
