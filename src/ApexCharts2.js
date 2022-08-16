@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import './charts.scss';
 import Chart from "react-apexcharts";
 import ApexCharts from "apexcharts";
-
+debugger
 var i = 0;
+var j = 0;
 let data = [[i, 0]];
 let data2 = [[i, 0]];
 let data3 = [[i, 0]];
 const NB = 10;
 
 
-export default class ApexChart extends Component {
+export default class ApexChart2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
